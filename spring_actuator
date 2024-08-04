@@ -1,4 +1,4 @@
-spring actuator dependency - 
+spring actuator dependency : 
 
 <dependencies>
 	<dependency>
@@ -6,6 +6,7 @@ spring actuator dependency -
 		<artifactId>spring-boot-starter-actuator</artifactId>
 	</dependency>
 </dependencies>
+
 ------------------------------------------------------------------
 
 management.endpoints.web.exposure.include=*
