@@ -1,0 +1,5 @@
+ HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.parseMediaType(image.getFileType()));
+	        headers.setContentDisposition(
+	                ContentDisposition.inline().filename(image.getFileName()).build()
+	        );
