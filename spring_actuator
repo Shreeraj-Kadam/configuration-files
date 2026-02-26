@@ -1,17 +1,16 @@
-actuator link : 
-https://docs.spring.io/spring-boot/reference/actuator/index.html
-------------------------------------------------------------------
-
-spring actuator dependency : 
-
-<dependencies>
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-actuator</artifactId>
-	</dependency>
-</dependencies>
-
-------------------------------------------------------------------
-
-management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
+
+management.info.env.enabled=true
+info.app.name= My Project
+info.app.version=1.0
+info.app.owner=Alpha Team
+
+
+main 5 actuator endpoints - 
+1) actuator/health
+2) actuator/info
+3) actuator/metrics
+4) actuator/beans
+5) actuator/mapping
+
+management.endpoints.web.exposure.include=health,info,metrics,beans,mappings
