@@ -11,6 +11,6 @@ main 5 actuator endpoints -
 2) actuator/info
 3) actuator/metrics
 4) actuator/beans
-5) actuator/mapping
+5) actuator/mappings
 
 management.endpoints.web.exposure.include=health,info,metrics,beans,mappings
