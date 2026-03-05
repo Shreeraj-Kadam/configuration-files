@@ -1,0 +1,58 @@
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class MySecurityConfig {
+
+	@Autowired
+	DataSource dataSource;
+	
+	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		
+		UserDetails user = User.withUsername("user")
+							.password("{noop}user1234")
+							.roles("USER")
+							.build();
+		
+		UserDetails admin = User.withUsername("admin")
+				.password("{noop}admin1234")
+				.roles("ADMIN")
+				.build();
+		
+		JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
+		
+		userDetailsManager.createUser(user);
+		userDetailsManager.createUser(admin);
+		
+		
+		return userDetailsManager;
+	}
+	
+	
+	
+	
+	@Bean
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+
+	    http
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/h2-console/**").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .csrf(csrf -> csrf
+	            .ignoringRequestMatchers("/h2-console/**")
+	        )
+	        .headers(headers -> headers
+	            .frameOptions(frame -> frame.disable())
+	        )
+	        .sessionManagement(session ->
+	            session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+	        )
+	        .httpBasic(withDefaults());
+
+	    return http.build();
+	}
+	
+}
